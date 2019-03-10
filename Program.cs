@@ -15,57 +15,26 @@ namespace CoreSchool
       schoolEngine.initialization();
       Printer.DrawTitle("Welcome to the School");
       printSchoolCourses(schoolEngine.School);
+      Dictionary<int, string> dictionary = new Dictionary<int, string> ();
+      dictionary.Add(10, "hecto932");
+      dictionary.Add(23, "Lorem Ipsum");
 
-      int dummy = 0;
-      var listObjects = schoolEngine.GetObjSchoolBases();
-      listObjects.Add(new Evaluation{Name="Crazy course"});
+      foreach (var keyValPair in dictionary)
+      {
+          WriteLine($"Key: {keyValPair.Key}, Value: {keyValPair.Value}");
+      }
 
-      // var listIPlace =  from obj in listObjects
-      //                   where obj is Student
-      //                   select (Student) obj;
+      Printer.DrawTitle("Access to Dictionary");
+      dictionary[0] = "Pokeman";
+      WriteLine(dictionary[23]);
+      WriteLine(dictionary[0]);
 
-      // schoolEngine.School.cleanPlace();
+      Printer.DrawTitle("Another dictionary");
+      var dic = new Dictionary<string, string>();
+      dic["luna"] = "Cuerpo celeste que gira al rededor de la tierra.";
+      dic.Add("luna", "protagonista de soy luna"); // This is not going to work becase already exist.
 
-      // Printer.DrawLine(20);
-      // Printer.DrawLine(20);
-      // Printer.DrawLine(20);
-      // Printer.DrawTitle("Testing polymorphism");
-      // var studentTest = new Student{Name="Claire Underwood"};
-
-      // Printer.DrawTitle("Student");
-      // WriteLine($"Student: {studentTest.Name}");
-      // WriteLine($"Student: ${studentTest.UniqueId}");
-      // WriteLine($"Student: {studentTest.GetType()}");
-
-      // ObjSchoolBase ob = studentTest;
-      // Printer.DrawTitle("ObjSchoolBase");
-      // WriteLine($"Student: {ob.Name}");
-      // WriteLine($"Student: ${ob.UniqueId}");
-      // WriteLine($"Student: {ob.GetType()}");
-
-      // var evaluationTest = new Evaluation(){ Name="Math Eval", Points=4.5f };
-      // Printer.DrawTitle("Evaluation");
-      // WriteLine($"Evaluation {evaluationTest.Name}");
-      // WriteLine($"Evaluation {evaluationTest.UniqueId}");
-      // WriteLine($"Evaluation {evaluationTest.Points}");
-      // WriteLine($"Evaluation {evaluationTest.GetType()}");
-
-      // // ob = evaluationTest;
-      // // Printer.DrawTitle("ObjSchoolBase");
-      // // WriteLine($"Student: {ob.Name}");
-      // // WriteLine($"Student: ${ob.UniqueId}");
-      // // WriteLine($"Student: {ob.GetType()}");
-
-      // // this is an error
-      // // studentTest = (Student) (ObjSchoolBase) evaluationTest;
-
-      // // ob = evaluationTest;
-      // if (ob is Student) {
-      //   Student studentRest = (Student) ob;
-      // }
-
-      // Student studentRest2 = ob as Student;
-
+      WriteLine(dic["luna"]);
 
     }
 
