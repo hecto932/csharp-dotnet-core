@@ -43,7 +43,7 @@ namespace CoreSchool.Entities
       {
           c.cleanPlace();
       }
-      Console.WriteLine("School {Name} is clean...");
+      Printer.DrawTitle($"School {Name} is clean...");
     }
   }
 }

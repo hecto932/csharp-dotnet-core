@@ -15,7 +15,7 @@ namespace CoreSchool.Entities
     {
       Printer.DrawLine();
       Console.WriteLine("Cleaning place...");
-      Console.WriteLine("Course {Name} is clean...");
+      Console.WriteLine($"Course {Name} is clean...");
     }
   }
 }

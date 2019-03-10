@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CodeSchool.Util;
 using CoreSchool.Entities;
 using static System.Console;
@@ -16,45 +17,51 @@ namespace CoreSchool
       printSchoolCourses(schoolEngine.School);
       var listObjects = schoolEngine.GetObjSchoolBases();
 
-      Printer.DrawLine(20);
-      Printer.DrawLine(20);
-      Printer.DrawLine(20);
-      Printer.DrawTitle("Testing polymorphism");
-      var studentTest = new Student{Name="Claire Underwood"};
+      var listIPlace =  from obj in listObjects
+                        where obj is Student
+                        select (Student) obj;
 
-      Printer.DrawTitle("Student");
-      WriteLine($"Student: {studentTest.Name}");
-      WriteLine($"Student: ${studentTest.UniqueId}");
-      WriteLine($"Student: {studentTest.GetType()}");
+      schoolEngine.School.cleanPlace();
 
-      ObjSchoolBase ob = studentTest;
-      Printer.DrawTitle("ObjSchoolBase");
-      WriteLine($"Student: {ob.Name}");
-      WriteLine($"Student: ${ob.UniqueId}");
-      WriteLine($"Student: {ob.GetType()}");
+      // Printer.DrawLine(20);
+      // Printer.DrawLine(20);
+      // Printer.DrawLine(20);
+      // Printer.DrawTitle("Testing polymorphism");
+      // var studentTest = new Student{Name="Claire Underwood"};
 
-      var evaluationTest = new Evaluation(){ Name="Math Eval", Points=4.5f };
-      Printer.DrawTitle("Evaluation");
-      WriteLine($"Evaluation {evaluationTest.Name}");
-      WriteLine($"Evaluation {evaluationTest.UniqueId}");
-      WriteLine($"Evaluation {evaluationTest.Points}");
-      WriteLine($"Evaluation {evaluationTest.GetType()}");
+      // Printer.DrawTitle("Student");
+      // WriteLine($"Student: {studentTest.Name}");
+      // WriteLine($"Student: ${studentTest.UniqueId}");
+      // WriteLine($"Student: {studentTest.GetType()}");
 
-      // ob = evaluationTest;
+      // ObjSchoolBase ob = studentTest;
       // Printer.DrawTitle("ObjSchoolBase");
       // WriteLine($"Student: {ob.Name}");
       // WriteLine($"Student: ${ob.UniqueId}");
       // WriteLine($"Student: {ob.GetType()}");
 
-      // this is an error
-      // studentTest = (Student) (ObjSchoolBase) evaluationTest;
+      // var evaluationTest = new Evaluation(){ Name="Math Eval", Points=4.5f };
+      // Printer.DrawTitle("Evaluation");
+      // WriteLine($"Evaluation {evaluationTest.Name}");
+      // WriteLine($"Evaluation {evaluationTest.UniqueId}");
+      // WriteLine($"Evaluation {evaluationTest.Points}");
+      // WriteLine($"Evaluation {evaluationTest.GetType()}");
 
-      // ob = evaluationTest;
-      if (ob is Student) {
-        Student studentRest = (Student) ob;
-      }
+      // // ob = evaluationTest;
+      // // Printer.DrawTitle("ObjSchoolBase");
+      // // WriteLine($"Student: {ob.Name}");
+      // // WriteLine($"Student: ${ob.UniqueId}");
+      // // WriteLine($"Student: {ob.GetType()}");
 
-      Student studentRest2 = ob as Student;
+      // // this is an error
+      // // studentTest = (Student) (ObjSchoolBase) evaluationTest;
+
+      // // ob = evaluationTest;
+      // if (ob is Student) {
+      //   Student studentRest = (Student) ob;
+      // }
+
+      // Student studentRest2 = ob as Student;
 
 
     }
