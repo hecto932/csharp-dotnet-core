@@ -30,6 +30,27 @@ namespace CoreSchool
       uploadEvaluations();
     }
 
+    public List<ObjSchoolBase> GetObjSchoolBases()
+    {
+      var listObj = new List<ObjSchoolBase>();
+
+      listObj.Add(School);
+      listObj.AddRange(School.Courses);
+
+      foreach (var c in School.Courses)
+      {
+        listObj.AddRange(c.Subjects);
+        listObj.AddRange(c.Students);
+
+        foreach (var s in c.Students)
+        {
+          listObj.AddRange(s.Evaluations);
+        }
+      };
+
+      return listObj;
+    }
+    #region Upload methods
     private void uploadEvaluations()
     {
       foreach (var course in School.Courses)
@@ -105,26 +126,7 @@ namespace CoreSchool
       }
     }
 
-    public List<ObjSchoolBase> GetObjSchoolBases()
-    {
-      var listObj = new List<ObjSchoolBase> ();
-
-      listObj.Add(School);
-      listObj.AddRange(School.Courses);
-      
-      foreach (var c in School.Courses)
-      {
-          listObj.AddRange(c.Subjects);
-          listObj.AddRange(c.Students);
-
-          foreach (var s in c.Students)
-          {
-              listObj.AddRange(s.Evaluations);
-          }
-      };
-
-      return listObj;
-    }
+    #endregion
   }
 }
 
