@@ -30,21 +30,48 @@ namespace CoreSchool
       uploadEvaluations();
     }
 
-    public List<ObjSchoolBase> GetObjSchoolBases()
+    public List<ObjSchoolBase> GetObjSchoolBases(
+      out int countEvaluations,
+      out int countCourses,
+      out int countSubjects,
+      out int countStudent,
+      bool getEvaluations = true,
+      bool getStudents = true ,
+      bool getSubjets = true ,
+      bool getCourses = true
+    )
     {
       var listObj = new List<ObjSchoolBase>();
+      countEvaluations = 0;
+      countStudent = 0;
+      countCourses = 0;
+      countSubjects = 0;
 
       listObj.Add(School);
-      listObj.AddRange(School.Courses);
-
+      if (getCourses) {
+        listObj.AddRange(School.Courses);
+        countCourses = School.Courses.Count;
+      }
+      
       foreach (var c in School.Courses)
       {
-        listObj.AddRange(c.Subjects);
-        listObj.AddRange(c.Students);
+        if (getStudents) {
+          listObj.AddRange(c.Students);
+          countStudent += c.Students.Count;
+        }
 
-        foreach (var s in c.Students)
+        if (getSubjets) {
+          listObj.AddRange(c.Subjects);
+          countSubjects += c.Subjects.Count;
+        }
+
+        if (getEvaluations)
         {
-          listObj.AddRange(s.Evaluations);
+          foreach (var s in c.Students)
+          {
+            listObj.AddRange(s.Evaluations);
+            countEvaluations += s.Evaluations.Count;
+          }
         }
       };
 

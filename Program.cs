@@ -15,13 +15,18 @@ namespace CoreSchool
       schoolEngine.initialization();
       Printer.DrawTitle("Welcome to the School");
       printSchoolCourses(schoolEngine.School);
-      var listObjects = schoolEngine.GetObjSchoolBases();
+      var listObjects = schoolEngine.GetObjSchoolBases(
+        out int countEvaluations,
+        out int countCourses,
+        out int countSubjects,
+        out int countStudent
+      );
 
-      var listIPlace =  from obj in listObjects
-                        where obj is Student
-                        select (Student) obj;
+      // var listIPlace =  from obj in listObjects
+      //                   where obj is Student
+      //                   select (Student) obj;
 
-      schoolEngine.School.cleanPlace();
+      // schoolEngine.School.cleanPlace();
 
       // Printer.DrawLine(20);
       // Printer.DrawLine(20);
