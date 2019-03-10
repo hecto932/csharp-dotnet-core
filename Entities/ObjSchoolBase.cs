@@ -2,7 +2,7 @@ using System;
 
 namespace CoreSchool.Entities 
 {
-  public class ObjSchoolBase {
+  public abstract class ObjSchoolBase {
     public string UniqueId { get; set; } = Guid.NewGuid().ToString();
     public string Name { get; set; }
 
