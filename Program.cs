@@ -14,6 +14,7 @@ namespace CoreSchool
       schoolEngine.initialization();
       Printer.DrawTitle("Welcome to the School");
       printSchoolCourses(schoolEngine.School);
+      var listObjects = schoolEngine.GetObjSchoolBases();
 
       Printer.DrawLine(20);
       Printer.DrawLine(20);
@@ -39,14 +40,22 @@ namespace CoreSchool
       WriteLine($"Evaluation {evaluationTest.Points}");
       WriteLine($"Evaluation {evaluationTest.GetType()}");
 
-      ob = evaluationTest;
-      Printer.DrawTitle("ObjSchoolBase");
-      WriteLine($"Student: {ob.Name}");
-      WriteLine($"Student: ${ob.UniqueId}");
-      WriteLine($"Student: {ob.GetType()}");
+      // ob = evaluationTest;
+      // Printer.DrawTitle("ObjSchoolBase");
+      // WriteLine($"Student: {ob.Name}");
+      // WriteLine($"Student: ${ob.UniqueId}");
+      // WriteLine($"Student: {ob.GetType()}");
 
       // this is an error
       // studentTest = (Student) (ObjSchoolBase) evaluationTest;
+
+      // ob = evaluationTest;
+      if (ob is Student) {
+        Student studentRest = (Student) ob;
+      }
+
+      Student studentRest2 = ob as Student;
+
 
     }
 

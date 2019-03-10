@@ -32,26 +32,26 @@ namespace CoreSchool
 
     private void uploadEvaluations()
     {
-      foreach(var course in School.Courses) 
+      foreach (var course in School.Courses)
       {
         foreach (var subject in course.Subjects)
         {
-            foreach (var student in course.Students)
-            {
-              var rnd = new Random(System.Environment.TickCount);
+          foreach (var student in course.Students)
+          {
+            var rnd = new Random(System.Environment.TickCount);
 
-              for(int i = 0; i < 5; i++) 
+            for (int i = 0; i < 5; i++)
+            {
+              var ev = new Evaluation
               {
-                var ev = new Evaluation
-                {
-                  Subject = subject,
-                  Name = $"{subject.Name} ev#{i + 1}",
-                  Points = (float)(5 * rnd.NextDouble()),
-                  Student = student
-                };
-                student.Evaluations.Add(ev);
-              }
+                Subject = subject,
+                Name = $"{subject.Name} ev#{i + 1}",
+                Points = (float)(5 * rnd.NextDouble()),
+                Student = student
+              };
+              student.Evaluations.Add(ev);
             }
+          }
         }
       }
     }
@@ -103,6 +103,27 @@ namespace CoreSchool
         c.Students = generateStudents(randomCount);
         // System.Console.WriteLine(c.Students);
       }
+    }
+
+    public List<ObjSchoolBase> GetObjSchoolBases()
+    {
+      var listObj = new List<ObjSchoolBase> ();
+
+      listObj.Add(School);
+      listObj.AddRange(School.Courses);
+      
+      foreach (var c in School.Courses)
+      {
+          listObj.AddRange(c.Subjects);
+          listObj.AddRange(c.Students);
+
+          foreach (var s in c.Students)
+          {
+              listObj.AddRange(s.Evaluations);
+          }
+      };
+
+      return listObj;
     }
   }
 }
