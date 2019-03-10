@@ -30,7 +30,7 @@ namespace CoreSchool
       uploadEvaluations();
     }
 
-    public List<ObjSchoolBase> GetObjSchoolBases(
+    public IReadOnlyList<ObjSchoolBase> GetObjSchoolBases(
       bool getEvaluations = true,
       bool getStudents = true,
       bool getSubjets = true,
@@ -40,7 +40,7 @@ namespace CoreSchool
       return GetObjSchoolBases(out int dummy, out dummy, out dummy, out dummy);
     }
 
-    public List<ObjSchoolBase> GetObjSchoolBases(
+    public IReadOnlyList<ObjSchoolBase> GetObjSchoolBases(
       out int countEvaluations,
       bool getEvaluations = true,
       bool getStudents = true,
@@ -51,7 +51,7 @@ namespace CoreSchool
       return GetObjSchoolBases(out countEvaluations, out int dummy, out dummy, out dummy);
     }
 
-    public List<ObjSchoolBase> GetObjSchoolBases(
+    public IReadOnlyList<ObjSchoolBase> GetObjSchoolBases(
       out int countEvaluations,
       out int countCourses,
       bool getEvaluations = true,
@@ -63,7 +63,7 @@ namespace CoreSchool
       return GetObjSchoolBases(out countEvaluations, out countCourses, out int dummy, out dummy);
     }
 
-    public List<ObjSchoolBase> GetObjSchoolBases(
+    public IReadOnlyList<ObjSchoolBase> GetObjSchoolBases(
       out int countEvaluations,
       out int countCourses,
       out int countSubjects,
@@ -76,7 +76,7 @@ namespace CoreSchool
       return GetObjSchoolBases(out countEvaluations, out countCourses, out countSubjects, out int dummy);
     }
 
-    public List<ObjSchoolBase> GetObjSchoolBases(
+    public  IReadOnlyList<ObjSchoolBase> GetObjSchoolBases(
       out int countEvaluations,
       out int countCourses,
       out int countSubjects,
@@ -124,7 +124,7 @@ namespace CoreSchool
         }
       };
 
-      return listObj;
+      return listObj.AsReadOnly();
     }
     #region Upload methods
     private void uploadEvaluations()

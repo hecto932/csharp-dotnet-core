@@ -18,6 +18,7 @@ namespace CoreSchool
 
       int dummy = 0;
       var listObjects = schoolEngine.GetObjSchoolBases();
+      listObjects.Add(new Evaluation{Name="Crazy course"});
 
       // var listIPlace =  from obj in listObjects
       //                   where obj is Student
