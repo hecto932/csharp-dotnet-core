@@ -31,13 +31,59 @@ namespace CoreSchool
     }
 
     public List<ObjSchoolBase> GetObjSchoolBases(
+      bool getEvaluations = true,
+      bool getStudents = true,
+      bool getSubjets = true,
+      bool getCourses = true
+    )
+    {
+      return GetObjSchoolBases(out int dummy, out dummy, out dummy, out dummy);
+    }
+
+    public List<ObjSchoolBase> GetObjSchoolBases(
+      out int countEvaluations,
+      bool getEvaluations = true,
+      bool getStudents = true,
+      bool getSubjets = true,
+      bool getCourses = true
+    )
+    {
+      return GetObjSchoolBases(out countEvaluations, out int dummy, out dummy, out dummy);
+    }
+
+    public List<ObjSchoolBase> GetObjSchoolBases(
+      out int countEvaluations,
+      out int countCourses,
+      bool getEvaluations = true,
+      bool getStudents = true,
+      bool getSubjets = true,
+      bool getCourses = true
+    )
+    {
+      return GetObjSchoolBases(out countEvaluations, out countCourses, out int dummy, out dummy);
+    }
+
+    public List<ObjSchoolBase> GetObjSchoolBases(
+      out int countEvaluations,
+      out int countCourses,
+      out int countSubjects,
+      bool getEvaluations = true,
+      bool getStudents = true,
+      bool getSubjets = true,
+      bool getCourses = true
+    )
+    {
+      return GetObjSchoolBases(out countEvaluations, out countCourses, out countSubjects, out int dummy);
+    }
+
+    public List<ObjSchoolBase> GetObjSchoolBases(
       out int countEvaluations,
       out int countCourses,
       out int countSubjects,
       out int countStudent,
       bool getEvaluations = true,
-      bool getStudents = true ,
-      bool getSubjets = true ,
+      bool getStudents = true,
+      bool getSubjets = true,
       bool getCourses = true
     )
     {
@@ -48,19 +94,22 @@ namespace CoreSchool
       countSubjects = 0;
 
       listObj.Add(School);
-      if (getCourses) {
+      if (getCourses)
+      {
         listObj.AddRange(School.Courses);
         countCourses = School.Courses.Count;
       }
-      
+
       foreach (var c in School.Courses)
       {
-        if (getStudents) {
+        if (getStudents)
+        {
           listObj.AddRange(c.Students);
           countStudent += c.Students.Count;
         }
 
-        if (getSubjets) {
+        if (getSubjets)
+        {
           listObj.AddRange(c.Subjects);
           countSubjects += c.Subjects.Count;
         }

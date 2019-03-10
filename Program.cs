@@ -17,12 +17,7 @@ namespace CoreSchool
       printSchoolCourses(schoolEngine.School);
 
       int dummy = 0;
-      var listObjects = schoolEngine.GetObjSchoolBases(
-        out int countEvaluations,
-        out dummy,
-        out dummy,
-        out dummy
-      );
+      var listObjects = schoolEngine.GetObjSchoolBases();
 
       // var listIPlace =  from obj in listObjects
       //                   where obj is Student
