@@ -18,19 +18,35 @@ namespace CoreSchool
       Printer.DrawLine(20);
       Printer.DrawLine(20);
       Printer.DrawLine(20);
-      Printer.DrawTitle("Testing polimorfismo");
+      Printer.DrawTitle("Testing polymorphism");
       var studentTest = new Student{Name="Claire Underwood"};
 
-      ObjSchoolBase ob = studentTest;
       Printer.DrawTitle("Student");
       WriteLine($"Student: {studentTest.Name}");
       WriteLine($"Student: ${studentTest.UniqueId}");
+      WriteLine($"Student: {studentTest.GetType()}");
 
+      ObjSchoolBase ob = studentTest;
       Printer.DrawTitle("ObjSchoolBase");
       WriteLine($"Student: {ob.Name}");
-      WriteLine($"Student: {ob.UniqueId}");
+      WriteLine($"Student: ${ob.UniqueId}");
+      WriteLine($"Student: {ob.GetType()}");
 
-      // var objDummy = new ObjSchoolBase(){Name="Frank Underwood"};
+      var evaluationTest = new Evaluation(){ Name="Math Eval", Points=4.5f };
+      Printer.DrawTitle("Evaluation");
+      WriteLine($"Evaluation {evaluationTest.Name}");
+      WriteLine($"Evaluation {evaluationTest.UniqueId}");
+      WriteLine($"Evaluation {evaluationTest.Points}");
+      WriteLine($"Evaluation {evaluationTest.GetType()}");
+
+      ob = evaluationTest;
+      Printer.DrawTitle("ObjSchoolBase");
+      WriteLine($"Student: {ob.Name}");
+      WriteLine($"Student: ${ob.UniqueId}");
+      WriteLine($"Student: {ob.GetType()}");
+
+      // this is an error
+      // studentTest = (Student) (ObjSchoolBase) evaluationTest;
 
     }
 
