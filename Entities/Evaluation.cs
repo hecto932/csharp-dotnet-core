@@ -8,5 +8,9 @@ namespace CoreSchool.Entities
     public Subject Subject { get; set; }
 
     public float Points { get; set; }
+
+    public override string ToString() {
+      return $"{Points}, {Student.Name}, {Subject.Name}";
+    }
   }
 }
