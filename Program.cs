@@ -15,11 +15,13 @@ namespace CoreSchool
       schoolEngine.initialization();
       Printer.DrawTitle("Welcome to the School");
       printSchoolCourses(schoolEngine.School);
+
+      int dummy = 0;
       var listObjects = schoolEngine.GetObjSchoolBases(
         out int countEvaluations,
-        out int countCourses,
-        out int countSubjects,
-        out int countStudent
+        out dummy,
+        out dummy,
+        out dummy
       );
 
       // var listIPlace =  from obj in listObjects
@@ -76,10 +78,11 @@ namespace CoreSchool
     {
       Printer.DrawTitle(school.Name);
 
-      if (school != null && school.Courses != null) {
+      if (school != null && school.Courses != null)
+      {
         foreach (var course in school.Courses)
         {
-            WriteLine(course);
+          WriteLine(course);
         }
       }
     }
