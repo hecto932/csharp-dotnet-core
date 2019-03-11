@@ -38,7 +38,7 @@ namespace CoreSchool
 
       var dictmp = schoolEngine.GetObjDictionary();
 
-      schoolEngine.PrintDictionary(dictmp);
+      schoolEngine.PrintDictionary(dictmp, true);
 
     }
 

@@ -41,8 +41,26 @@ namespace CoreSchool
         Printer.DrawTitle(obj.Key.ToString());
         foreach (var value in obj.Value)
         {
-          if ((value is Evaluation && printEval) || !(value is Evaluation)) {
-            Console.WriteLine($"{obj.Key.ToString()}: {value}");
+          switch (obj.Key)
+          {
+              case DictionaryKeys.Evaluation:
+                if (printEval) {
+                  Console.WriteLine($"{obj.Key.ToString()}: {value}");
+                }
+              break;
+              case DictionaryKeys.Student:
+                Console.WriteLine($"{obj.Key.ToString()}: {value.Name}");
+              break;
+              case DictionaryKeys.Course:
+                var courseTmp = value as Course;
+                if (courseTmp != null) {
+                  int count = courseTmp.Students.Count;
+                  Console.WriteLine($"{obj.Key.ToString()}: {value.Name} Count: {count}");
+                }
+              break;
+              default:
+                Console.WriteLine($"{obj.Key.ToString()}: {value}");
+              break;
           }
         }
       }
@@ -190,7 +208,7 @@ namespace CoreSchool
               {
                 Subject = subject,
                 Name = $"{subject.Name} ev#{i + 1}",
-                Points = (float)(5 * rnd.NextDouble()),
+                Points = MathF.Round((float)(5 * rnd.NextDouble()), 2),
                 Student = student
               };
               student.Evaluations.Add(ev);
