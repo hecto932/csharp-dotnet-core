@@ -32,7 +32,7 @@ namespace CoreSchool
       Printer.DrawTitle("Another dictionary");
       var dic = new Dictionary<string, string>();
       dic["luna"] = "Cuerpo celeste que gira al rededor de la tierra.";
-      dic.Add("luna", "protagonista de soy luna"); // This is not going to work becase already exist.
+      // dic.Add("luna", "protagonista de soy luna"); // This is not going to work becase already exist.
 
       WriteLine(dic["luna"]);
 

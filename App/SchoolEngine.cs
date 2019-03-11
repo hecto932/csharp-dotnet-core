@@ -36,8 +36,25 @@ namespace CoreSchool
       dictionary.Add(DictionaryKeys.School,new[] {School});
       dictionary.Add(DictionaryKeys.Course, School.Courses.Cast<ObjSchoolBase>());
 
-      // dictionary
-      
+      var listEvaluationTmp = new List<Evaluation>();
+      var listSubjetsTmp = new List<Subject>();
+      var listStudentTmp = new List<Student>();
+
+      foreach (var c in School.Courses)
+      {   
+          listSubjetsTmp.AddRange(c.Subjects);
+          listStudentTmp.AddRange(c.Students);
+        
+          foreach (var s in c.Students)
+          {
+              listEvaluationTmp.AddRange(s.Evaluations);
+          }
+      }
+
+      dictionary.Add(DictionaryKeys.Subject, listSubjetsTmp.Cast<ObjSchoolBase>());
+      dictionary.Add(DictionaryKeys.Student, listStudentTmp.Cast<ObjSchoolBase>());
+      dictionary.Add(DictionaryKeys.Evaluation, listEvaluationTmp.Cast<ObjSchoolBase>());
+
       return dictionary;
     } 
 
