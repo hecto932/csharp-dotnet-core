@@ -31,14 +31,19 @@ namespace CoreSchool
       uploadEvaluations();
     }
 
-    public void PrintDictionary(Dictionary<DictionaryKeys, IEnumerable<ObjSchoolBase>> dic)
+    public void PrintDictionary(
+      Dictionary<DictionaryKeys, IEnumerable<ObjSchoolBase>> dic,
+      bool printEval = false
+    )
     {
       foreach (var obj in dic)
       {
         Printer.DrawTitle(obj.Key.ToString());
         foreach (var value in obj.Value)
         {
-          Console.WriteLine(value);
+          if ((value is Evaluation && printEval) || !(value is Evaluation)) {
+            Console.WriteLine($"{obj.Key.ToString()}: {value}");
+          }
         }
       }
     }
