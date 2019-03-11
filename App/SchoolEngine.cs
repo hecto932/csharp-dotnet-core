@@ -194,21 +194,20 @@ namespace CoreSchool
     #region Upload methods
     private void uploadEvaluations()
     {
+      var rnd = new Random();
       foreach (var course in School.Courses)
       {
         foreach (var subject in course.Subjects)
         {
           foreach (var student in course.Students)
           {
-            var rnd = new Random(System.Environment.TickCount);
-
             for (int i = 0; i < 5; i++)
             {
               var ev = new Evaluation
               {
                 Subject = subject,
                 Name = $"{subject.Name} ev#{i + 1}",
-                Points = MathF.Round((float)(5 * rnd.NextDouble()), 2),
+                Points = MathF.Round(5 * (float)rnd.NextDouble(), 2),
                 Student = student
               };
               student.Evaluations.Add(ev);

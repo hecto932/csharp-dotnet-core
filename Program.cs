@@ -11,17 +11,19 @@ namespace CoreSchool
   {
     static void Main(string[] args)
     {
+      AppDomain.CurrentDomain.ProcessExit += eventAction;
+      AppDomain.CurrentDomain.ProcessExit += (o, s) => Console.WriteLine("Hola");
       var schoolEngine = new SchoolEngine();
       schoolEngine.initialization();
       Printer.DrawTitle("Welcome to the School");
       printSchoolCourses(schoolEngine.School);
-      Dictionary<int, string> dictionary = new Dictionary<int, string> ();
+      Dictionary<int, string> dictionary = new Dictionary<int, string>();
       dictionary.Add(10, "hecto932");
       dictionary.Add(23, "Lorem Ipsum");
 
       foreach (var keyValPair in dictionary)
       {
-          WriteLine($"Key: {keyValPair.Key}, Value: {keyValPair.Value}");
+        WriteLine($"Key: {keyValPair.Key}, Value: {keyValPair.Value}");
       }
 
       Printer.DrawTitle("Access to Dictionary");
@@ -42,6 +44,12 @@ namespace CoreSchool
 
     }
 
+    private static void eventAction(object sender, EventArgs e)
+    {
+      Printer.DrawTitle("SALIENDO");
+      // Printer.Beep(3000, 1000, 3);
+      Printer.DrawTitle("SALIO");
+    }
 
     private static void printSchoolCourses(School school)
     {
