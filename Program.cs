@@ -36,6 +36,8 @@ namespace CoreSchool
 
       WriteLine(dic["luna"]);
 
+      var dictmp = schoolEngine.GetObjDictionary();
+
     }
 
 

@@ -30,6 +30,16 @@ namespace CoreSchool
       uploadEvaluations();
     }
 
+    public Dictionary<string, IEnumerable<ObjSchoolBase>> GetObjDictionary () {
+      Dictionary<string, IEnumerable<ObjSchoolBase>> dictionary = new Dictionary<string, IEnumerable<ObjSchoolBase>>();
+      
+      dictionary.Add("School",new[] {School});
+      dictionary.Add("Courses", School.Courses.Cast<ObjSchoolBase>());
+      // dictionary
+      
+      return dictionary;
+    } 
+
     public IReadOnlyList<ObjSchoolBase> GetObjSchoolBases(
       bool getEvaluations = true,
       bool getStudents = true,
