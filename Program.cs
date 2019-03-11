@@ -38,6 +38,8 @@ namespace CoreSchool
 
       var dictmp = schoolEngine.GetObjDictionary();
 
+      schoolEngine.PrintDictionary(dictmp);
+
     }
 
 

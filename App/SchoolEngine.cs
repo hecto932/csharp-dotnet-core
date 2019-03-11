@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CodeSchool.Util;
 using CoreSchool.Entities;
 
 namespace CoreSchool
@@ -30,10 +31,23 @@ namespace CoreSchool
       uploadEvaluations();
     }
 
-    public Dictionary<DictionaryKeys, IEnumerable<ObjSchoolBase>> GetObjDictionary () {
+    public void PrintDictionary(Dictionary<DictionaryKeys, IEnumerable<ObjSchoolBase>> dic)
+    {
+      foreach (var obj in dic)
+      {
+        Printer.DrawTitle(obj.Key.ToString());
+        foreach (var value in obj.Value)
+        {
+          Console.WriteLine(value);
+        }
+      }
+    }
+
+    public Dictionary<DictionaryKeys, IEnumerable<ObjSchoolBase>> GetObjDictionary()
+    {
       Dictionary<DictionaryKeys, IEnumerable<ObjSchoolBase>> dictionary = new Dictionary<DictionaryKeys, IEnumerable<ObjSchoolBase>>();
-      
-      dictionary.Add(DictionaryKeys.School,new[] {School});
+
+      dictionary.Add(DictionaryKeys.School, new[] { School });
       dictionary.Add(DictionaryKeys.Course, School.Courses.Cast<ObjSchoolBase>());
 
       var listEvaluationTmp = new List<Evaluation>();
@@ -41,14 +55,14 @@ namespace CoreSchool
       var listStudentTmp = new List<Student>();
 
       foreach (var c in School.Courses)
-      {   
-          listSubjetsTmp.AddRange(c.Subjects);
-          listStudentTmp.AddRange(c.Students);
-        
-          foreach (var s in c.Students)
-          {
-              listEvaluationTmp.AddRange(s.Evaluations);
-          }
+      {
+        listSubjetsTmp.AddRange(c.Subjects);
+        listStudentTmp.AddRange(c.Students);
+
+        foreach (var s in c.Students)
+        {
+          listEvaluationTmp.AddRange(s.Evaluations);
+        }
       }
 
       dictionary.Add(DictionaryKeys.Subject, listSubjetsTmp.Cast<ObjSchoolBase>());
@@ -56,7 +70,7 @@ namespace CoreSchool
       dictionary.Add(DictionaryKeys.Evaluation, listEvaluationTmp.Cast<ObjSchoolBase>());
 
       return dictionary;
-    } 
+    }
 
     public IReadOnlyList<ObjSchoolBase> GetObjSchoolBases(
       bool getEvaluations = true,
@@ -104,7 +118,7 @@ namespace CoreSchool
       return GetObjSchoolBases(out countEvaluations, out countCourses, out countSubjects, out int dummy);
     }
 
-    public  IReadOnlyList<ObjSchoolBase> GetObjSchoolBases(
+    public IReadOnlyList<ObjSchoolBase> GetObjSchoolBases(
       out int countEvaluations,
       out int countCourses,
       out int countSubjects,
