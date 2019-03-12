@@ -19,7 +19,8 @@ namespace CoreSchool
       schoolEngine.initialization();
       Printer.DrawTitle("Welcome to the School");
 
-      var reporter = new Reporter(null);
+      var reporter = new Reporter(schoolEngine.GetObjDictionary());
+      reporter.GetEvaluationList();
     }
 
     private static void eventAction(object sender, EventArgs e)

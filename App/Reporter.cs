@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using CoreSchool.Entities;
 
@@ -14,8 +15,15 @@ namespace CoreSchool.App
       _dictionary = dicObjSchool;
     }
 
-    public IEnumerable<Evaluation> GetEvaluationList() {
-      _dictionary[DictionaryKeys.Evaluation]
+    public IEnumerable<School> GetEvaluationList() {
+      IEnumerable<School> response;
+      if (_dictionary.TryGetValue(DictionaryKeys.School, out IEnumerable<ObjSchoolBase> list) == true) {
+        response = list.Cast<School>();
+      } else {
+        response = null;
+      }
+
+      return response;
     }
   }
 }
