@@ -15,15 +15,25 @@ namespace CoreSchool.App
       _dictionary = dicObjSchool;
     }
 
-    public IEnumerable<School> GetEvaluationList() {
-      IEnumerable<School> response;
-      if (_dictionary.TryGetValue(DictionaryKeys.School, out IEnumerable<ObjSchoolBase> list) == true) {
-        response = list.Cast<School>();
+    public IEnumerable<Evaluation> GetEvaluationList() {
+      if (_dictionary.TryGetValue(DictionaryKeys.Evaluation, out IEnumerable<ObjSchoolBase> list) == true) {
+        return list.Cast<Evaluation>();
       } else {
-        response = null;
+        return new List<Evaluation>();
       }
+    }
 
-      return response;
+    public IEnumerable<string> GetSubjectList() {
+      var listEvaluations = GetEvaluationList();
+
+      return (from Evaluation ev in listEvaluations
+              select ev.Subject.Name).Distinct();
+    }
+
+    public Dictionary<string, IEnumerable<Evaluation>> GetEvaluationDictBySubject () {
+      var dictRta = new Dictionary<string, IEnumerable<Evaluation>>();
+
+      return dictRta;
     }
   }
 }

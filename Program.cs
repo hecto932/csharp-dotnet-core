@@ -20,7 +20,9 @@ namespace CoreSchool
       Printer.DrawTitle("Welcome to the School");
 
       var reporter = new Reporter(schoolEngine.GetObjDictionary());
-      reporter.GetEvaluationList();
+      var evalList = reporter.GetEvaluationList();
+      var subjectList = reporter.GetSubjectList();
+
     }
 
     private static void eventAction(object sender, EventArgs e)
