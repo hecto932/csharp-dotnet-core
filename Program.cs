@@ -68,6 +68,8 @@ namespace CoreSchool
         catch(Exception e)
         {
           WriteLine(e.Message);
+        } finally {
+          Printer.DrawTitle("The point value is not valid.");
         }
       }
     }
