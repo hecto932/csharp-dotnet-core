@@ -22,6 +22,7 @@ namespace CoreSchool
       var reporter = new Reporter(schoolEngine.GetObjDictionary());
       var evalList = reporter.GetEvaluationList();
       var subjectList = reporter.GetSubjectList();
+      var listEvaluationXsubject = reporter.GetEvaluationDictBySubject();
 
     }
 

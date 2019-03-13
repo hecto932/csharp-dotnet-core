@@ -26,14 +26,31 @@ namespace CoreSchool.App
     public IEnumerable<string> GetSubjectList() {
       var listEvaluations = GetEvaluationList();
 
+      return GetSubjectList(out var dummy);
+    }
+
+    public IEnumerable<string> GetSubjectList(out IEnumerable<Evaluation> listEvaluations) {
+      listEvaluations = GetEvaluationList();
+
       return (from Evaluation ev in listEvaluations
               select ev.Subject.Name).Distinct();
     }
 
     public Dictionary<string, IEnumerable<Evaluation>> GetEvaluationDictBySubject () {
-      var dictRta = new Dictionary<string, IEnumerable<Evaluation>>();
+      var dicResponse = new Dictionary<string, IEnumerable<Evaluation>>();
 
-      return dictRta;
+      var listSubjects = GetSubjectList(out var listEval);
+
+      foreach (var s in listSubjects)
+      {
+        var evalsSubj = from eval in listEval
+                          where eval.Subject.Name == s
+                          select eval;
+                          
+          dicResponse.Add(s, evalsSubj);
+      }
+
+      return dicResponse;
     }
   }
 }
