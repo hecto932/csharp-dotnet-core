@@ -24,11 +24,7 @@ namespace CoreSchool
       var subjectList = reporter.GetSubjectList();
       var listEvaluationXsubject = reporter.GetEvaluationDictBySubject();
       var listAverageXSubject = reporter.GetStudentAverageBySubject();
-
-      foreach (var student in listAverageXSubject)
-      {
-          
-      }
+      var last = reporter.getBestStudentsBySubjectAndPoint("Castellano", 4);
     }
 
     private static void eventAction(object sender, EventArgs e)

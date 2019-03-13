@@ -88,5 +88,15 @@ namespace CoreSchool.App
 
       return response;
     }
+
+    public IEnumerable<Object> getBestStudentsBySubjectAndPoint (string subjectName, int limit) {
+      var dictionary = GetStudentAverageBySubject();
+
+      var filtered = dictionary.GetValueOrDefault(subjectName)
+        .OrderByDescending(prom => ((StudentAverage) prom).average)
+        .Take(limit);
+
+      return filtered;
+    }
   }
 }
