@@ -26,5 +26,9 @@ namespace CodeSchool.Util
         System.Console.Beep(hz, tiempo);
       }
     }
+
+    public static void pressEnter() {
+      WriteLine("Press enter to continue...");
+    }
   }
 }

@@ -25,6 +25,51 @@ namespace CoreSchool
       var listEvaluationXsubject = reporter.GetEvaluationDictBySubject();
       var listAverageXSubject = reporter.GetStudentAverageBySubject();
       var last = reporter.getBestStudentsBySubjectAndPoint("Castellano", 4);
+
+      Printer.DrawTitle("Captura de evauluacin por consola");
+      var newEval = new Evaluation();
+      string name, pointString;
+      float point;
+
+      Printer.pressEnter();
+      name = Console.ReadLine();
+
+      if (string.IsNullOrWhiteSpace(name))
+      {
+        throw new ArgumentException("Value of name cant be empty");
+      }
+      else
+      {
+        newEval.Name = name.ToLower();
+        Printer.DrawTitle("Name correct.");
+      }
+
+      WriteLine("Point of evaluation");
+      Printer.pressEnter();
+      pointString = Console.ReadLine();
+
+      if (string.IsNullOrWhiteSpace(pointString))
+      {
+        Printer.DrawTitle("The value is incorrect...");
+      }
+      else
+      {
+        try
+        {
+          newEval.Points = float.Parse(pointString);
+          if (newEval.Points < 0 || newEval.Points > 5) {
+            throw new ArgumentOutOfRangeException("The value must be between 0 and 5");
+          }
+          WriteLine("The evaluation name is correct");
+        }
+        catch(ArgumentOutOfRangeException arge) {
+          WriteLine(arge.Message);
+        }
+        catch(Exception e)
+        {
+          WriteLine(e.Message);
+        }
+      }
     }
 
     private static void eventAction(object sender, EventArgs e)
