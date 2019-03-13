@@ -23,7 +23,12 @@ namespace CoreSchool
       var evalList = reporter.GetEvaluationList();
       var subjectList = reporter.GetSubjectList();
       var listEvaluationXsubject = reporter.GetEvaluationDictBySubject();
+      var listAverageXSubject = reporter.GetStudentAverageBySubject();
 
+      foreach (var student in listAverageXSubject)
+      {
+          
+      }
     }
 
     private static void eventAction(object sender, EventArgs e)

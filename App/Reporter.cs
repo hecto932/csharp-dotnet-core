@@ -63,21 +63,30 @@ namespace CoreSchool.App
       return dicResponse;
     }
 
-    public Dictionary<string, IEnumerable<object>> GetStudentAverageBySubject() {
-      var response = Dictionary<string, IEnumerable<object>>();
+    public Dictionary<string, IEnumerable<object>> GetStudentAverageBySubject()
+    {
+      var response = new Dictionary<string, IEnumerable<object>>();
 
       var dicEvaluationBySubject = GetEvaluationDictBySubject();
-      
+
       foreach (var subjectWithEval in dicEvaluationBySubject)
       {
-          var dummy = from eval in subjectWithEval.Value
-                      select new{ 
-                        eval.Subject.UniqueId,
-                        eval.Points
-                      };
+        var averageStudent = from eval in subjectWithEval.Value
+                             group eval by new {
+                               eval.Student.UniqueId,
+                               eval.Student.Name
+                             }
+                    into groupEvalStudent
+                             select new StudentAverage
+                             {
+                               student_id = groupEvalStudent.Key.UniqueId,
+                               student_name = groupEvalStudent.Key.Name,
+                               average = groupEvalStudent.Average(evaluation => evaluation.Points)
+                             };
+        response.Add(subjectWithEval.Key, averageStudent);
       }
 
       return response;
-    } 
+    }
   }
 }
